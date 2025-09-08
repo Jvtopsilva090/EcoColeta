@@ -25,12 +25,14 @@ public class PointController {
         return pointRepository.findByNameContainingIgnoreCase(name);
     }
 
+
     @PostMapping
     public Point createPoint(@RequestBody Point point) {
+        Point saved = pointRepository.save(point);
         return pointRepository.save(point);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Point> updatePoint(@PathVariable Long id, @RequestBody Point updatedPoint) {
         return pointRepository.findById(id)
                 .map(point -> {
@@ -42,4 +44,14 @@ public class PointController {
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePoint(@PathVariable Long id) {
+        if (pointRepository.existsById(id)) {
+            pointRepository.deleteById(id);
+            return ResponseEntity.noContent().build(); // 204 -> deletado com sucesso
+        } else {
+            return ResponseEntity.notFound().build(); // 404 -> não encontrado
+        }
+    }
+
 }

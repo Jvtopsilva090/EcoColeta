@@ -37,7 +37,8 @@ class CollectionPoint {
 
 // Cliente simples em Java para consumir a API do servidor
 public class ClientApp {
-    private static final String BASE_URL = "http://localhost:8080/api/collection-points";
+    private static final String BASE_URL = "http://localhost:8080/api/points";
+    private static final String SEARCH_URL = BASE_URL + "/search";
     private static final Scanner scanner = new Scanner(System.in);
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -140,7 +141,15 @@ public class ClientApp {
         URL url = new URL(endpoint);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("DELETE");
-        return readResponse(con);
+
+        int responseCode = con.getResponseCode();
+        if (responseCode == HttpURLConnection.HTTP_NO_CONTENT) {
+            return "Ponto deletado com sucesso!";
+        } else if (responseCode == HttpURLConnection.HTTP_NOT_FOUND) {
+            return "Ponto não encontrado!";
+        } else {
+            return "Erro: código HTTP " + responseCode;
+        }
     }
 
     private static String readResponse(HttpURLConnection con) throws IOException {
@@ -154,6 +163,20 @@ public class ClientApp {
         } finally {
             con.disconnect();
         }
+    }
+    private static JsonObject choosePointFromList(JsonArray points) {
+        System.out.println("Foram encontrados vários pontos:");
+        for (int i = 0; i < points.size(); i++) {
+            JsonObject p = points.get(i).getAsJsonObject();
+            System.out.println(i + " - " + p.get("name").getAsString() + " (ID: " + p.get("id").getAsString() + ")");
+        }
+        System.out.print("Escolha o índice do ponto a editar: ");
+        int index = Integer.parseInt(scanner.nextLine());
+        if (index < 0 || index >= points.size()) {
+            System.out.println("Índice inválido.");
+            return null;
+        }
+        return points.get(index).getAsJsonObject();
     }
 
     public static void main(String[] args) {
@@ -176,15 +199,13 @@ public class ClientApp {
 
                 switch (opcao) {
                     case 1 -> {
-                        endpoint = "http://localhost:8080/api/collection-points";
-                        resposta = sendGetRequest(endpoint);
-                        imprimirPontos(resposta);
+                        imprimirPontos(sendGetRequest(BASE_URL));
                     }
                     case 2 -> {
                         System.out.print("Digite o nome (ou parte do nome): ");
                         String name = scanner.nextLine();
                         Map<String, String> params = Map.of("name", name);
-                        endpoint = UrlUtils.buildUrlWithParams("http://localhost:8080/api/collection-points/search", params);
+                        endpoint = UrlUtils.buildUrlWithParams(BASE_URL + "/search", params);
                         System.out.println("URL final: " + endpoint);
                         resposta = sendGetRequest(endpoint);
                         imprimirPontos(resposta);
@@ -201,8 +222,8 @@ public class ClientApp {
                                 "{\"name\":\"%s\", \"address\":\"%s\", \"type\":\"%s\"}",
                                 nome, endereco, tipo);
 
-                        endpoint = "http://localhost:8080/api/collection-points";
-                        resposta = sendPostRequest(endpoint, jsonInput);
+
+                        resposta = sendPostRequest(BASE_URL, jsonInput);
 
                         System.out.println("\n--- Ponto cadastrado com sucesso ---");
                         imprimirPontos(resposta);
@@ -213,7 +234,7 @@ public class ClientApp {
 
                         // Busca pontos que contenham a string digitada
                         Map<String, String> params = Map.of("name", inputName);
-                        String searchEndpoint = UrlUtils.buildUrlWithParams("http://localhost:8080/api/collection-points/search", params);
+                        String searchEndpoint = UrlUtils.buildUrlWithParams(BASE_URL + "/search", params);
                         System.out.println("Buscando ponto...");
 
                         String searchResponse = sendGetRequest(searchEndpoint);
@@ -264,7 +285,7 @@ public class ClientApp {
                         );
 
                         // Atualiza usando ID do ponto
-                        String updateEndpoint = BASE_URL + "/" + point.get("id").getAsString();
+                        String updateEndpoint = "http://localhost:8080/api/points/" + point.get("id").getAsString();
 
                         try {
                             String respostaNova = sendPutRequest(updateEndpoint, jsonInput);
@@ -288,5 +309,6 @@ public class ClientApp {
         } catch (Exception e) {
             System.err.println("Erro ao consumir a API: " + e.getMessage());
         }
+
     }
 }
