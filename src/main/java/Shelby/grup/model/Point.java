@@ -1,25 +1,22 @@
 package Shelby.grup.model;
 
-public class CollectionPoint {
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "points")
+public class Point {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String address;
     private String type;
 
-    // Construtor padrão
-    public CollectionPoint() {}
+    public Point() {}
 
-    // Construtor sem id (para POST)
-    public CollectionPoint(String name, String address, String type) {
-        this.name = name;
-        this.address = address;
-        this.type = type;
-    }
-
-    // Construtor com id (para inicializar a lista no controller)
-    public CollectionPoint(Long id, String name, String address, String type) {
-        this.id = id;
+    public Point(String name, String address, String type) {
         this.name = name;
         this.address = address;
         this.type = type;
@@ -27,7 +24,6 @@ public class CollectionPoint {
 
     // Getters e Setters
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
