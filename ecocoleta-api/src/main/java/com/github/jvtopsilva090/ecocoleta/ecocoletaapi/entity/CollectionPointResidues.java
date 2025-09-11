@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "collection_point_residues", uniqueConstraints = @UniqueConstraint(columnNames = {"collectionPointId", "residueId"}))
+@Table(name = "collection_point_residues", uniqueConstraints = @UniqueConstraint(columnNames = {"collection_point_id", "residue_id"}))
 public class CollectionPointResidues {
 
     @EmbeddedId

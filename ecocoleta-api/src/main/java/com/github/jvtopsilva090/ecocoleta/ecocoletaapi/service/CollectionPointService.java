@@ -2,6 +2,7 @@ package com.github.jvtopsilva090.ecocoleta.ecocoletaapi.service;
 
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.dto.*;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.CollectionPoint;
+import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.CollectionPointResidues;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.exception.CollectionPointNotFoundException;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.repository.CollectionPointRepository;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.repository.CollectionPointResiduesRepository;
@@ -26,9 +27,18 @@ public class CollectionPointService {
         try {
             final CollectionPoint collectionPoint;
             final CollectionPointOutDto collectionPointOutDto;
+            final List<CollectionPointResidues> collectionPointResidues;
 
             collectionPoint = this.collectionPointRepository.save(new CollectionPoint(collectionPointCreateDto));
             collectionPointOutDto = new CollectionPointOutDto(collectionPoint);
+
+            collectionPointResidues = collectionPointCreateDto
+                    .residueIds()
+                    .stream()
+                    .map(residueId -> new CollectionPointResidues(collectionPointOutDto.id(), residueId))
+                    .toList();
+
+            collectionPointResiduesRepository.saveAll(collectionPointResidues);
 
             return new ApiResponseDto<>(collectionPointOutDto);
         } catch (Exception e) {
@@ -63,6 +73,7 @@ public class CollectionPointService {
         }
     }
 
+    @Transactional
     public ApiResponseDto<List<CollectionPointOutDto>> updateCollectionPoint(final List<CollectionPointEditDto> collectionPointEditDtos) {
         try {
             final List<CollectionPoint> collectionPoints = new ArrayList<>();
@@ -79,6 +90,7 @@ public class CollectionPointService {
                 Optional.ofNullable(collectionPointEditDto.longitude()).ifPresent(collectionPoint::setLongitude);
 
                 collectionPoints.add(collectionPoint);
+                this.collectionPointResiduesRepository.deleteAllByCollectionPointId(collectionPoint.getId());
             });
 
             this.collectionPointRepository.saveAll(collectionPoints);
