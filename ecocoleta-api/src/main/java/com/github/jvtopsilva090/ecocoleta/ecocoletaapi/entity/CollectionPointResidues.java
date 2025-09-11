@@ -1,14 +1,13 @@
 package com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Entity
 @NoArgsConstructor
-@Entity(name = "collection_point_residues")
+@Table(name = "collection_point_residues", uniqueConstraints = @UniqueConstraint(columnNames = {"collectionPointId", "residueId"}))
 public class CollectionPointResidues {
 
     @EmbeddedId

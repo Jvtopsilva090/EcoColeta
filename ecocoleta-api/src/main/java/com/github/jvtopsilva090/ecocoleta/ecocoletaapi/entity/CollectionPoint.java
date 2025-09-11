@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "collection_point")
+@Table(name = "collection_point", uniqueConstraints = @UniqueConstraint(columnNames = {"latitude", "longitude"}))
 public class CollectionPoint {
 
     @Id
