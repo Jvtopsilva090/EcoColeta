@@ -12,28 +12,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Scanner;
 
-class CollectionPoint {
-    private Long id;
-    private String name;
-    private String address;
-    private String type;
-
-    // Getters e setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getAddress() { return address; }
-    public void setAddress(String address) { this.address = address; }
-    public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
-
-    @Override
-    public String toString() {
-        return "ID: " + id + " | Nome: " + name + " | Endereço: " + address + " | Tipo: " + type;
-    }
-}
-
 // Cliente simples em Java para consumir a API do servidor
 public class ClientApp {
     private static final String BASE_URL = "http://localhost:8080/api/points";

@@ -14,12 +14,12 @@ public class CollectionPointResidues {
     private CollectionPointResiduesId id;
 
     @Column(name = "collection_point_id", nullable = false, insertable = false, updatable = false)
-    private Long collectionPointId;
+    private Integer collectionPointId;
 
     @Column(name = "residue_id", nullable = false, insertable = false, updatable = false)
-    private Long residueId;
+    private Integer residueId;
 
-    public CollectionPointResidues(Long collectionPointId, Long residueId) {
+    public CollectionPointResidues(Integer collectionPointId, Integer residueId) {
         this.id = new CollectionPointResiduesId(collectionPointId, residueId);
         this.collectionPointId = collectionPointId;
         this.residueId = residueId;

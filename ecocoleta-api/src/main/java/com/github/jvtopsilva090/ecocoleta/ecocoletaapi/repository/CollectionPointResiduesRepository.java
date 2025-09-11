@@ -5,5 +5,5 @@ import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.CollectionPointRes
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CollectionPointResiduesRepository extends JpaRepository<CollectionPointResidues, CollectionPointResiduesId> {
-    void deleteAllByCollectionPointId(Long collectionPointId);
+    void deleteAllByCollectionPointId(Integer collectionPointId);
 }

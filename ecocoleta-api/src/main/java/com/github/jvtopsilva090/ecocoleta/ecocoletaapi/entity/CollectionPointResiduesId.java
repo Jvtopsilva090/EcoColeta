@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 public class CollectionPointResiduesId {
 
     @Column(name = "collection_point_id", nullable = false)
-    private Long collectionPointId;
+    private Integer collectionPointId;
 
     @Column(name = "residue_id", nullable = false)
-    private Long residueId;
+    private Integer residueId;
 }

@@ -24,14 +24,14 @@ public class CollectionPointController {
 
     @GetMapping
     public ResponseEntity<ApiResponseDto<List<CollectionPointOutDto>>> getAllCollectionPoints(
-        @RequestParam(required = false) CollectionPointFiltersDto filtersDto,
-        @PageableDefault Pageable pageable
+        CollectionPointFiltersDto filtersDto,
+        @PageableDefault() Pageable pageable
     ) {
         return ResponseEntity.ok(collectionPointService.getAllCollectionPoints(filtersDto, pageable));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<CollectionPointOutDto>> getCollectionPointById(@RequestParam Long collectionPointId) {
+    public ResponseEntity<ApiResponseDto<CollectionPointOutDto>> getCollectionPointById(@PathVariable("id") Integer collectionPointId) {
         return ResponseEntity.ok(collectionPointService.getCollectionPointById(collectionPointId));
     }
 
@@ -41,7 +41,7 @@ public class CollectionPointController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponseDto<Object>> deleteCollectionPoint(@PathVariable Long collectionPointId) {
+    public ResponseEntity<ApiResponseDto<Object>> deleteCollectionPoint(@PathVariable("id") Integer collectionPointId) {
         return ResponseEntity.ok(collectionPointService.deleteCollectionPoint(collectionPointId));
     }
 }

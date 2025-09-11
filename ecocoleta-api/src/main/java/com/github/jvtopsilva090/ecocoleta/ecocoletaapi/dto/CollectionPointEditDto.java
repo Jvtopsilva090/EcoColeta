@@ -2,14 +2,15 @@ package com.github.jvtopsilva090.ecocoleta.ecocoletaapi.dto;
 
 import lombok.NonNull;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public record CollectionPointEditDto(
-    @NonNull Long id,
+    @NonNull Integer id,
     String name,
     String formattedAddress,
-    Double latitude,
-    Double longitude,
-    List<Long> residueIds
+    BigDecimal latitude,
+    BigDecimal longitude,
+    List<Integer> residueIds
 ) {
 }

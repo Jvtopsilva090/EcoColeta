@@ -56,7 +56,7 @@ public class CollectionPointService {
         }
     }
 
-    public ApiResponseDto<CollectionPointOutDto> getCollectionPointById(final Long collectionPointId) {
+    public ApiResponseDto<CollectionPointOutDto> getCollectionPointById(final Integer collectionPointId) {
         try {
             final CollectionPoint collectionPoint;
             final CollectionPointOutDto collectionPointOutDto;
@@ -113,7 +113,7 @@ public class CollectionPointService {
     }
 
     @Transactional
-    public ApiResponseDto<Object> deleteCollectionPoint(final Long collectionPointId) {
+    public ApiResponseDto<Object> deleteCollectionPoint(final Integer collectionPointId) {
         try {
             this.collectionPointResiduesRepository.deleteAllByCollectionPointId(collectionPointId);
             this.collectionPointRepository.deleteById(collectionPointId);
