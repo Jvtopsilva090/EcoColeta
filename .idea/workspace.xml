@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="552e9d0b-36c1-4b36-a30e-c37660a4a15b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/controller/ResidueController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/ApiResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointCreateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointEditDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointFiltersDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointOutDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/PageMetadataDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/entity/CollectionPointResidues.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/entity/CollectionPointResiduesId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/entity/Residue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/repository/CollectionPointResiduesRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/repository/ResidueRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/service/CollectionPointResiduesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/service/ResidueService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ClientApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Shelby/grup/DataLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Shelby/grup/EcoColetaApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Shelby/grup/UrlUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Shelby/grup/controller/PointController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Shelby/grup/exception/PointNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Shelby/grup/model/CollectionPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Shelby/grup/model/Point.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Shelby/grup/repository/PointRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Shelby/grup/service/PointService.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Record" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="32X1PrWXts5eGMuvH0uckte2izJ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.ecocoleta-api [install].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.EcocoletaApiApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/ariel-jorge/Project/EcoColeta/ecocoleta-api",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ecocoleta-api" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.EcocoletaApiApplication">
+    <configuration name="EcoColetaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="EcoColeta (1) (Shelby.grup)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="Shelby.grup.EcoColetaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EcocoletaApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ecocoleta-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.github.jvtopsilva090.ecocoleta.ecocoletaapi.EcocoletaApiApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="552e9d0b-36c1-4b36-a30e-c37660a4a15b" name="Changes" comment="" />
+      <created>1757552084106</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757552084106</updated>
+      <workItem from="1757552113825" duration="11940000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
