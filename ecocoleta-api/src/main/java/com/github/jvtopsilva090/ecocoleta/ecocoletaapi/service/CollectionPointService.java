@@ -4,6 +4,7 @@ import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.dto.*;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.CollectionPoint;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.CollectionPointResidues;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.exception.CollectionPointNotFoundException;
+import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.projection.CollectionPointFlatProjection;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.repository.CollectionPointRepository;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.repository.CollectionPointResiduesRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,9 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +34,7 @@ public class CollectionPointService {
             collectionPointResidues = collectionPointCreateDto
                     .residueIds()
                     .stream()
-                    .map(residueId -> new CollectionPointResidues(collectionPointOutDto.id(), residueId))
+                    .map(residueId -> new CollectionPointResidues(collectionPointOutDto.getId(), residueId))
                     .toList();
 
             this.collectionPointResiduesRepository.saveAll(collectionPointResidues);
@@ -48,9 +47,12 @@ public class CollectionPointService {
 
     public ApiResponseDto<List<CollectionPointOutDto>> getAllCollectionPoints(CollectionPointFiltersDto filtersDto, Pageable pageable) {
         try {
-            final Page<CollectionPoint> paginatedCollectionPoints;
+            final Page<CollectionPointFlatProjection> paginatedCollectionPoints;
             paginatedCollectionPoints = this.collectionPointRepository.findAllPaginated(pageable, filtersDto.collectionPointName());
-            return new ApiResponseDto<>(paginatedCollectionPoints, (page) -> page.getContent().stream().map(CollectionPointOutDto::new).toList());
+            return new ApiResponseDto<>(paginatedCollectionPoints, data -> {
+                final Map<Integer, CollectionPointOutDto> grouped = getGroupedCollectionPoint(data.getContent());
+                return new ArrayList<>(grouped.values());
+            });
         } catch (Exception e) {
             return new ApiResponseDto<>(false, "Failed to get collection points!", e.getMessage());
         }
@@ -58,16 +60,15 @@ public class CollectionPointService {
 
     public ApiResponseDto<CollectionPointOutDto> getCollectionPointById(final Integer collectionPointId) {
         try {
-            final CollectionPoint collectionPoint;
-            final CollectionPointOutDto collectionPointOutDto;
+            final List<CollectionPointFlatProjection> collectionPoint;
+            final Map<Integer, CollectionPointOutDto> grouped;
 
             collectionPoint = collectionPointRepository
-                    .findById(collectionPointId)
+                    .findByIdCustom(collectionPointId)
                     .orElseThrow(() -> new CollectionPointNotFoundException("Collection Point not found for id " + collectionPointId));
 
-            collectionPointOutDto = new CollectionPointOutDto(collectionPoint);
-
-            return new ApiResponseDto<>(collectionPointOutDto);
+            grouped = getGroupedCollectionPoint(collectionPoint);
+            return new ApiResponseDto<>(grouped.get(collectionPointId));
         } catch (Exception e) {
             return new ApiResponseDto<>(false, "Failed to get collection point by id!", e.getMessage());
         }
@@ -121,5 +122,18 @@ public class CollectionPointService {
         } catch (Exception e) {
             return new ApiResponseDto<>(false, "Failed to delete collection point!", e.getMessage());
         }
+    }
+
+    private Map<Integer, CollectionPointOutDto> getGroupedCollectionPoint(List<CollectionPointFlatProjection> data) {
+        final Map<Integer, CollectionPointOutDto> grouped = new LinkedHashMap<>();
+
+        for (CollectionPointFlatProjection row : data) {
+            grouped.computeIfAbsent(
+                    row.getCollectionPointId(),
+                    id -> new CollectionPointOutDto(id, row)
+            ).getResiduesType().add(new ResidueOutDto(row.getResidueId(), row.getResidueName()));
+        }
+
+        return grouped;
     }
 }

@@ -1,16 +1,17 @@
 package com.github.jvtopsilva090.ecocoleta.ecocoletaapi.dto;
 
 import lombok.NonNull;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public record CollectionPointEditDto(
-    @NonNull Integer id,
-    String name,
-    String formattedAddress,
-    BigDecimal latitude,
-    BigDecimal longitude,
-    List<Integer> residueIds
+    @Param("id") @NonNull Integer id,
+    @Param("name") String name,
+    @Param("formattedAddress") String formattedAddress,
+    @Param("latitude") BigDecimal latitude,
+    @Param("longitude") BigDecimal longitude,
+    @Param("residueIds") List<Integer> residueIds
 ) {
 }

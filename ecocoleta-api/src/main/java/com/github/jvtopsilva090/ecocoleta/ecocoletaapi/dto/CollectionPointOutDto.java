@@ -1,26 +1,39 @@
 package com.github.jvtopsilva090.ecocoleta.ecocoletaapi.dto;
 
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.CollectionPoint;
+import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.projection.CollectionPointFlatProjection;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
-public record CollectionPointOutDto(
-    Integer id,
-    String name,
-    String formattedAddress,
-    BigDecimal latitude,
-    BigDecimal longitude,
-    List<Object> residuesType
-) {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class CollectionPointOutDto {
+    private Integer id;
+    private String name;
+    private String formattedAddress;
+    private BigDecimal latitude;
+    private BigDecimal longitude;
+    private List<ResidueOutDto> residuesType = new ArrayList<>();
+
     public CollectionPointOutDto(CollectionPoint collectionPoint) {
-        this(
-            collectionPoint.getId(),
-            collectionPoint.getName(),
-            collectionPoint.getFormattedAddress(),
-            collectionPoint.getLatitude(),
-            collectionPoint.getLongitude(),
-            null
-        );
+        this.id = collectionPoint.getId();
+        this.name = collectionPoint.getName();
+        this.formattedAddress = collectionPoint.getFormattedAddress();
+        this.latitude = collectionPoint.getLatitude();
+        this.longitude = collectionPoint.getLongitude();
+    }
+
+    public CollectionPointOutDto(Integer id, CollectionPointFlatProjection row) {
+        this.id = id;
+        this.name = row.getCollectionPointName();
+        this.formattedAddress = row.getCollectionPointAddress();
+        this.latitude = row.getCollectionPointLatitude();
+        this.longitude = row.getCollectionPointLongitude();
     }
 }
