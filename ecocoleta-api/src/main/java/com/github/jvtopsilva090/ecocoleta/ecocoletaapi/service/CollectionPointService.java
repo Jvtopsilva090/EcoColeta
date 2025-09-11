@@ -38,7 +38,7 @@ public class CollectionPointService {
                     .map(residueId -> new CollectionPointResidues(collectionPointOutDto.id(), residueId))
                     .toList();
 
-            collectionPointResiduesRepository.saveAll(collectionPointResidues);
+            this.collectionPointResiduesRepository.saveAll(collectionPointResidues);
 
             return new ApiResponseDto<>(collectionPointOutDto);
         } catch (Exception e) {
@@ -80,6 +80,8 @@ public class CollectionPointService {
 
             collectionPointEditDtos.forEach(collectionPointEditDto -> {
                 final CollectionPoint collectionPoint;
+                final List<CollectionPointResidues> collectionPointResidues;
+
                 collectionPoint = collectionPointRepository
                         .findById(collectionPointEditDto.id())
                         .orElseThrow(() -> new CollectionPointNotFoundException("Collection Point not found for id " + collectionPointEditDto.id()));
@@ -90,7 +92,16 @@ public class CollectionPointService {
                 Optional.ofNullable(collectionPointEditDto.longitude()).ifPresent(collectionPoint::setLongitude);
 
                 collectionPoints.add(collectionPoint);
+
                 this.collectionPointResiduesRepository.deleteAllByCollectionPointId(collectionPoint.getId());
+
+                collectionPointResidues = collectionPointEditDto
+                        .residueIds()
+                        .stream()
+                        .map(residueId -> new CollectionPointResidues(collectionPointEditDto.id(), residueId))
+                        .toList();
+
+                this.collectionPointResiduesRepository.saveAll(collectionPointResidues);
             });
 
             this.collectionPointRepository.saveAll(collectionPoints);
