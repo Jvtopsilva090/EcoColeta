@@ -15,6 +15,6 @@
 
     <modules>
         <module>ecocoleta-api</module>
-        <module>ecocoleta-client</module>
+        <module>ecocoleta</module>
     </modules>
 </project>

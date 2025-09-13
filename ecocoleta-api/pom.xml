@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.github.jvtopsilva090.ecocoleta</groupId>
 	<artifactId>ecocoleta-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>ecocoleta-api</name>
 	<description>ecocoleta-api</description>
 	<url/>

@@ -1,87 +1,13 @@
-import Shelby.grup.UrlUtils;
-import com.google.gson.*;
+package com.github.jvtopsilva090.ecocoleta;
 
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import com.github.jvtopsilva090.ecocoleta.util.UrlUtils;
+
 import java.util.Map;
 import java.util.Scanner;
 
-// Cliente simples em Java para consumir a API do servidor
 public class ClientApp {
-    private static final String BASE_URL = "http://localhost:8080/api/points";
-    private static final String SEARCH_URL = BASE_URL + "/search";
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    // Método auxiliar GET
-    private static String sendGetRequest(String endpoint) throws Exception {
-        URL url = URI.create(endpoint).toURL();
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-
-        try (BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
-            StringBuilder content = new StringBuilder();
-            String inputLine;
-            while ((inputLine = in.readLine()) != null) content.append(inputLine);
-            return content.toString();
-        } finally {
-            con.disconnect();
-        }
-    }
-
-    // Método auxiliar POST
-    private static String sendPostRequest(String endpoint, String jsonInput) throws Exception {
-        URL url = URI.create(endpoint).toURL();
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("POST");
-        con.setRequestProperty("Content-Type", "application/json; utf-8");
-        con.setDoOutput(true);
-
-        try (OutputStream os = con.getOutputStream()) {
-            byte[] input = jsonInput.getBytes(StandardCharsets.UTF_8);
-            os.write(input, 0, input.length);
-        }
-
-        try (BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
-            StringBuilder response = new StringBuilder();
-            String responseLine;
-            while ((responseLine = in.readLine()) != null) response.append(responseLine.trim());
-            return response.toString();
-        } finally {
-            con.disconnect();
-        }
-    }
-
-    // Método auxiliar PUT
-    private static String sendPutRequest(String endpoint, String jsonInput) throws Exception {
-        URL url = URI.create(endpoint).toURL();
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("PUT");
-        con.setRequestProperty("Content-Type", "application/json; utf-8");
-        con.setDoOutput(true);
-
-        try (OutputStream os = con.getOutputStream()) {
-            os.write(jsonInput.getBytes(StandardCharsets.UTF_8), 0, jsonInput.getBytes(StandardCharsets.UTF_8).length);
-        }
-
-        try (BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = in.readLine()) != null) response.append(line.trim());
-            return response.toString();
-        } finally {
-            con.disconnect();
-        }
-    }
+    private static final String BASE_URL = "http://localhost:8080/api";
 
     // Método para imprimir pontos formatados em português
     private static void imprimirPontos(String respostaJson) {
@@ -113,47 +39,6 @@ public class ClientApp {
         } catch (Exception e) {
             System.err.println("Erro ao interpretar resposta da API: " + e.getMessage());
         }
-    }
-    private static String deleteRequest(String endpoint) throws IOException {
-        URL url = new URL(endpoint);
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("DELETE");
-
-        int responseCode = con.getResponseCode();
-        if (responseCode == HttpURLConnection.HTTP_NO_CONTENT) {
-            return "Ponto deletado com sucesso!";
-        } else if (responseCode == HttpURLConnection.HTTP_NOT_FOUND) {
-            return "Ponto não encontrado!";
-        } else {
-            return "Erro: código HTTP " + responseCode;
-        }
-    }
-
-    private static String readResponse(HttpURLConnection con) throws IOException {
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = in.readLine()) != null) {
-                response.append(line.trim());
-            }
-            return response.toString();
-        } finally {
-            con.disconnect();
-        }
-    }
-    private static JsonObject choosePointFromList(JsonArray points) {
-        System.out.println("Foram encontrados vários pontos:");
-        for (int i = 0; i < points.size(); i++) {
-            JsonObject p = points.get(i).getAsJsonObject();
-            System.out.println(i + " - " + p.get("name").getAsString() + " (ID: " + p.get("id").getAsString() + ")");
-        }
-        System.out.print("Escolha o índice do ponto a editar: ");
-        int index = Integer.parseInt(scanner.nextLine());
-        if (index < 0 || index >= points.size()) {
-            System.out.println("Índice inválido.");
-            return null;
-        }
-        return points.get(index).getAsJsonObject();
     }
 
     public static void main(String[] args) {
@@ -284,8 +169,7 @@ public class ClientApp {
             } while (opcao != 0);
 
         } catch (Exception e) {
-            System.err.println("Erro ao consumir a API: " + e.getMessage());
+            System.err.println(e.getMessage());
         }
-
     }
 }
