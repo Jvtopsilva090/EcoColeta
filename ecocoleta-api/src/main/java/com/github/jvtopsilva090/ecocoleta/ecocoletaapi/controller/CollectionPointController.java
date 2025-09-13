@@ -3,6 +3,7 @@ package com.github.jvtopsilva090.ecocoleta.ecocoletaapi.controller;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.dto.*;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.service.CollectionPointService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -19,29 +20,34 @@ public class CollectionPointController {
 
     @PostMapping
     public ResponseEntity<ApiResponseDto<CollectionPointOutDto>> createCollectionPoint(@RequestBody CollectionPointCreateDto collectionPointCreateDto) {
-        return ResponseEntity.ok(collectionPointService.createCollectionPoint(collectionPointCreateDto));
+        final CollectionPointOutDto collectionPointOutDto = this.collectionPointService.createCollectionPoint(collectionPointCreateDto);
+        return ResponseEntity.ok(new ApiResponseDto<>(collectionPointOutDto));
     }
 
     @GetMapping
     public ResponseEntity<ApiResponseDto<List<CollectionPointOutDto>>> getAllCollectionPoints(
         CollectionPointFiltersDto filtersDto,
-        @PageableDefault() Pageable pageable
+        @PageableDefault Pageable pageable
     ) {
-        return ResponseEntity.ok(collectionPointService.getAllCollectionPoints(filtersDto, pageable));
+        final Page<CollectionPointOutDto> page = collectionPointService.getAllCollectionPoints(filtersDto, pageable);
+        return ResponseEntity.ok(new ApiResponseDto<>(page, page.getContent()));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponseDto<CollectionPointOutDto>> getCollectionPointById(@PathVariable("id") Integer collectionPointId) {
-        return ResponseEntity.ok(collectionPointService.getCollectionPointById(collectionPointId));
+        final CollectionPointOutDto collectionPointOutDto = this.collectionPointService.getCollectionPointById(collectionPointId);
+        return ResponseEntity.ok(new ApiResponseDto<>(collectionPointOutDto));
     }
 
     @PutMapping
     public ResponseEntity<ApiResponseDto<List<CollectionPointOutDto>>> updateCollectionPoint(@RequestBody List<CollectionPointEditDto> collectionPointEditDtos) {
-        return ResponseEntity.ok(collectionPointService.updateCollectionPoint(collectionPointEditDtos));
+        final List<CollectionPointOutDto> collectionPoints = this.collectionPointService.updateCollectionPoint(collectionPointEditDtos);
+        return ResponseEntity.ok(new ApiResponseDto<>(true, "Collection Points updated successfully!", collectionPoints));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponseDto<Object>> deleteCollectionPoint(@PathVariable("id") Integer collectionPointId) {
-        return ResponseEntity.ok(collectionPointService.deleteCollectionPoint(collectionPointId));
+        this.collectionPointService.deleteCollectionPoint(collectionPointId);
+        return ResponseEntity.ok(new ApiResponseDto<>(true, "Collection point deleted successfully!"));
     }
 }

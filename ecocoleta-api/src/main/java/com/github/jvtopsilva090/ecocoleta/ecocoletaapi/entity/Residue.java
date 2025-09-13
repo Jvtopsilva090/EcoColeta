@@ -18,4 +18,8 @@ public class Residue {
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+    public Residue(String s) {
+        this.name = s;
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,12 +27,17 @@ public interface CollectionPointRepository extends JpaRepository<CollectionPoint
             from CollectionPoint cp
                 left join CollectionPointResidues cpr on cpr.collectionPointId = cp.id
                 inner join Residue r on r.id = cpr.residueId
-            where (:collection_point_name is null or lower(cp.name) ilike '%' || lower(:collection_point_name) || '%')
+            where 1=1
+                and (:collection_point_name is null or lower(cp.name) ilike concat('%', lower(:collection_point_name), '%'))
+                and (:latitude is null or cp.latitude = cast(:latitude as bigdecimal(9,6)) )
+                and (:longitude is null or cp.longitude = cast(:longitude as bigdecimal(9,6)))
         """,
         countQuery = "select count(cp) from CollectionPoint cp"
     ) Page<CollectionPointFlatProjection> findAllPaginated(
         Pageable pageable,
-        @Param("collection_point_name") String collectionPointName
+        @Param("collection_point_name") String collectionPointName,
+        @Param("latitude") BigDecimal latitude,
+        @Param("longitude") BigDecimal longitude
     );
 
     @Query("""

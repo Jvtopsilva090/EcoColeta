@@ -3,12 +3,14 @@ package com.github.jvtopsilva090.ecocoleta.ecocoletaapi.service;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.dto.*;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.CollectionPoint;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.CollectionPointResidues;
+import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.exception.CollectionPointException;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.exception.CollectionPointNotFoundException;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.projection.CollectionPointFlatProjection;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.repository.CollectionPointRepository;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.repository.CollectionPointResiduesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +24,7 @@ public class CollectionPointService {
     private final CollectionPointRepository collectionPointRepository;
     private final CollectionPointResiduesRepository collectionPointResiduesRepository;
 
-    public ApiResponseDto<CollectionPointOutDto> createCollectionPoint(final CollectionPointCreateDto collectionPointCreateDto) {
+    public CollectionPointOutDto createCollectionPoint(final CollectionPointCreateDto collectionPointCreateDto) {
         try {
             final CollectionPoint collectionPoint;
             final CollectionPointOutDto collectionPointOutDto;
@@ -39,26 +41,25 @@ public class CollectionPointService {
 
             this.collectionPointResiduesRepository.saveAll(collectionPointResidues);
 
-            return new ApiResponseDto<>(collectionPointOutDto);
+            return collectionPointOutDto;
         } catch (Exception e) {
-            return new ApiResponseDto<>(false, "Failed to create collection point!", e.getMessage());
+            throw new CollectionPointException("Failed to create collection point!");
         }
     }
 
-    public ApiResponseDto<List<CollectionPointOutDto>> getAllCollectionPoints(CollectionPointFiltersDto filtersDto, Pageable pageable) {
+    public Page<CollectionPointOutDto> getAllCollectionPoints(CollectionPointFiltersDto filtersDto, Pageable pageable) {
         try {
             final Page<CollectionPointFlatProjection> paginatedCollectionPoints;
-            paginatedCollectionPoints = this.collectionPointRepository.findAllPaginated(pageable, filtersDto.collectionPointName());
-            return new ApiResponseDto<>(paginatedCollectionPoints, data -> {
-                final Map<Integer, CollectionPointOutDto> grouped = getGroupedCollectionPoint(data.getContent());
-                return new ArrayList<>(grouped.values());
-            });
+            final Map<Integer, CollectionPointOutDto> grouped;
+            paginatedCollectionPoints = this.collectionPointRepository.findAllPaginated(pageable, filtersDto.name(), filtersDto.latitude(), filtersDto.longitude());
+            grouped = getGroupedCollectionPoint(paginatedCollectionPoints.getContent());
+            return new PageImpl<>(new ArrayList<>(grouped.values()), paginatedCollectionPoints.getPageable(), paginatedCollectionPoints.getTotalElements());
         } catch (Exception e) {
-            return new ApiResponseDto<>(false, "Failed to get collection points!", e.getMessage());
+            throw new CollectionPointException("Failed to get collection points!");
         }
     }
 
-    public ApiResponseDto<CollectionPointOutDto> getCollectionPointById(final Integer collectionPointId) {
+    public CollectionPointOutDto getCollectionPointById(final Integer collectionPointId) {
         try {
             final List<CollectionPointFlatProjection> collectionPoint;
             final Map<Integer, CollectionPointOutDto> grouped;
@@ -68,14 +69,16 @@ public class CollectionPointService {
                     .orElseThrow(() -> new CollectionPointNotFoundException("Collection Point not found for id " + collectionPointId));
 
             grouped = getGroupedCollectionPoint(collectionPoint);
-            return new ApiResponseDto<>(grouped.get(collectionPointId));
+            return grouped.get(collectionPointId);
+        } catch (CollectionPointNotFoundException e) {
+            throw e;
         } catch (Exception e) {
-            return new ApiResponseDto<>(false, "Failed to get collection point by id!", e.getMessage());
+            throw new CollectionPointException("Failed to get collection point by id!");
         }
     }
 
     @Transactional
-    public ApiResponseDto<List<CollectionPointOutDto>> updateCollectionPoint(final List<CollectionPointEditDto> collectionPointEditDtos) {
+    public List<CollectionPointOutDto> updateCollectionPoint(final List<CollectionPointEditDto> collectionPointEditDtos) {
         try {
             final List<CollectionPoint> collectionPoints = new ArrayList<>();
 
@@ -107,20 +110,21 @@ public class CollectionPointService {
 
             this.collectionPointRepository.saveAll(collectionPoints);
 
-            return new ApiResponseDto<>(true, "Collection Points updated successfully!", collectionPoints.stream().map(CollectionPointOutDto::new).toList());
+            return collectionPoints.stream().map(CollectionPointOutDto::new).toList();
+        } catch (CollectionPointNotFoundException e) {
+            throw e;
         } catch (Exception e) {
-            return new ApiResponseDto<>(false, "Failed to delete collection point!", e.getMessage());
+            throw new CollectionPointException("Failed to delete collection point!");
         }
     }
 
     @Transactional
-    public ApiResponseDto<Object> deleteCollectionPoint(final Integer collectionPointId) {
+    public void deleteCollectionPoint(final Integer collectionPointId) {
         try {
             this.collectionPointResiduesRepository.deleteAllByCollectionPointId(collectionPointId);
             this.collectionPointRepository.deleteById(collectionPointId);
-            return new ApiResponseDto<>(true, "Collection point deleted successfully!");
         } catch (Exception e) {
-            return new ApiResponseDto<>(false, "Failed to delete collection point!", e.getMessage());
+            throw new CollectionPointException("Failed to delete collection point!");
         }
     }
 
