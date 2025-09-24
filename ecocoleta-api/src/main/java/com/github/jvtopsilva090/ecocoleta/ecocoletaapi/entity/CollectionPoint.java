@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "collection_point", uniqueConstraints = @UniqueConstraint(columnNames = {"latitude", "longitude"}))
+@Table(name = "collection_point")
 public class CollectionPoint {
 
     @Id

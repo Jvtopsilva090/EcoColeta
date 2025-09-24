@@ -9,6 +9,15 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ecocoleta (1) (com.github.jvtopsilva090.ecocoleta)" />
       </profile>
+      <profile name="Annotation profile for ecocoleta-cli" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.40/lombok-1.18.40.jar" />
+        </processorPath>
+        <module name="ecocoleta-cli" />
+      </profile>
       <profile name="Annotation profile for ecocoleta" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -29,6 +38,7 @@
       <module name="ecocoleta" options="-parameters" />
       <module name="ecocoleta (1) (com.github.jvtopsilva090.ecocoleta)" options="-parameters" />
       <module name="ecocoleta-api" options="-parameters" />
+      <module name="ecocoleta-cli" options="-parameters" />
     </option>
   </component>
 </project>
