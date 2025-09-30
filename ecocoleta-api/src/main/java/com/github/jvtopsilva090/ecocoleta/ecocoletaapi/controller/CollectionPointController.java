@@ -1,7 +1,6 @@
 package com.github.jvtopsilva090.ecocoleta.ecocoletaapi.controller;
 
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.dto.*;
-import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.CollectionPoint;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.service.CollectionPointService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +22,8 @@ public class CollectionPointController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponseDto<List<CollectionPoint>>> getAllCollectionPoints() {
-        final List<CollectionPoint> list = collectionPointService.getAllCollectionPoints();
+    public ResponseEntity<ApiResponseDto<List<CollectionPointOutDto>>> getAllCollectionPoints(@RequestParam(name = "residue", required = false) String residueType) {
+        final List<CollectionPointOutDto> list = collectionPointService.getAllCollectionPoints(residueType);
         return ResponseEntity.ok(new ApiResponseDto<>(list));
     }
 

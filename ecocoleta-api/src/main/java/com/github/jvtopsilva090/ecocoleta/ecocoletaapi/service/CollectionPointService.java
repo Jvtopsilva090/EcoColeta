@@ -2,9 +2,11 @@ package com.github.jvtopsilva090.ecocoleta.ecocoletaapi.service;
 
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.dto.*;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.CollectionPoint;
+import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.Residue;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.exception.CollectionPointException;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.exception.CollectionPointNotFoundException;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.repository.CollectionPointRepository;
+import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.repository.ResiduesCollectionPointRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,7 @@ import java.util.*;
 public class CollectionPointService {
 
     private final CollectionPointRepository collectionPointRepository;
+    private final ResiduesCollectionPointRepository residuesCollectionPointRepository;
 
     public CollectionPointOutDto createCollectionPoint(final CollectionPointCreateDto collectionPointCreateDto) {
         try {
@@ -27,9 +30,18 @@ public class CollectionPointService {
         }
     }
 
-    public List<CollectionPoint> getAllCollectionPoints() {
+    public List<CollectionPointOutDto> getAllCollectionPoints(String residueType) {
         try {
-            return this.collectionPointRepository.findAll();
+            final Map<Integer, CollectionPointOutDto> map = new HashMap<>();
+            this.collectionPointRepository
+                    .findAll(residueType)
+                    .forEach(collectionPoint -> {
+                        map.computeIfAbsent(
+                            collectionPoint.getIdCollectionPoint(),
+                            k -> new CollectionPointOutDto(collectionPoint)
+                        ).addResidue(new Residue(collectionPoint.getIdResidue(), collectionPoint.getNameResidue()));
+                    });
+            return map.values().stream().toList();
         } catch (Exception e) {
             throw new CollectionPointException("Failed to get collection points!");
         }
@@ -82,6 +94,7 @@ public class CollectionPointService {
     @Transactional
     public void deleteCollectionPoint(final Integer collectionPointId) {
         try {
+            this.residuesCollectionPointRepository.deleteByIdCollectionPoint(collectionPointId);
             this.collectionPointRepository.deleteById(collectionPointId);
         } catch (Exception e) {
             throw new CollectionPointException("Failed to delete collection point!");
