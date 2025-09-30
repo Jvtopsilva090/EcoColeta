@@ -21,18 +21,28 @@ public class EcoColetaApiRepository {
     }
 
     public List<CollectionPointOutDto> getAllCollectionPoints() {
-        final ParameterizedTypeReference<ApiResponseDto<List<CollectionPointOutDto>>> typeReference = new ParameterizedTypeReference<>() {};
-        return this.restClientHelper.get(BASE_URL.concat("/collection-point?").concat("&page=0&size=1000"), typeReference).data();
+        return this.restClientHelper
+            .get(
+                BASE_URL.concat("/collection-point?").concat("&page=0&size=1000"),
+                new ParameterizedTypeReference<ApiResponseDto<List<CollectionPointOutDto>>>() {}
+            ).data();
     }
 
-    public List<CollectionPointOutDto> getCollectionPointByName(String name) {
-        final ParameterizedTypeReference<ApiResponseDto<List<CollectionPointOutDto>>> typeReference = new ParameterizedTypeReference<>() {};
-        return this.restClientHelper.get(BASE_URL.concat("/collection-point?").concat("&page=0&size=1&name=").concat(name), typeReference).data();
+    public CollectionPointOutDto getCollectionPointById(Integer idCollectionPoint) {
+        return this.restClientHelper
+            .get(
+                BASE_URL.concat("/collection-point/").concat(idCollectionPoint.toString()),
+                new ParameterizedTypeReference<ApiResponseDto<CollectionPointOutDto>>() {}
+            ).data();
     }
 
     public CollectionPointOutDto updateCollectionPoint(final CollectionPointEditDto collectionPointEditDto) {
-        final ParameterizedTypeReference<ApiResponseDto<CollectionPointOutDto>> typeReference = new ParameterizedTypeReference<>() {};
-        return this.restClientHelper.put(BASE_URL.concat("/collection-point"), typeReference, collectionPointEditDto).data();
+        return this.restClientHelper
+                .put(
+                    BASE_URL.concat("/collection-point"),
+                    new ParameterizedTypeReference<ApiResponseDto<CollectionPointOutDto>>() {},
+                    collectionPointEditDto
+                ).data();
     }
 
     public void deleteCollectionPoint(Integer collectionPointId) {

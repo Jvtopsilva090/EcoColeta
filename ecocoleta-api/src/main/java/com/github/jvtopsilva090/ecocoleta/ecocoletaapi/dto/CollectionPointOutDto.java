@@ -1,14 +1,11 @@
 package com.github.jvtopsilva090.ecocoleta.ecocoletaapi.dto;
 
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.CollectionPoint;
-import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.projection.CollectionPointFlatProjection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,7 +16,6 @@ public class CollectionPointOutDto {
     private String formattedAddress;
     private BigDecimal latitude;
     private BigDecimal longitude;
-    private List<ResidueOutDto> residuesType = new ArrayList<>();
 
     public CollectionPointOutDto(CollectionPoint collectionPoint) {
         this.id = collectionPoint.getId();
@@ -27,13 +23,5 @@ public class CollectionPointOutDto {
         this.formattedAddress = collectionPoint.getFormattedAddress();
         this.latitude = collectionPoint.getLatitude();
         this.longitude = collectionPoint.getLongitude();
-    }
-
-    public CollectionPointOutDto(Integer id, CollectionPointFlatProjection row) {
-        this.id = id;
-        this.name = row.getCollectionPointName();
-        this.formattedAddress = row.getCollectionPointAddress();
-        this.latitude = row.getCollectionPointLatitude();
-        this.longitude = row.getCollectionPointLongitude();
     }
 }

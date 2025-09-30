@@ -28,14 +28,11 @@
         <module name="ecocoleta-api" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ecocoleta" target="21" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="EcoColeta" options="" />
-      <module name="ecocoleta" options="-parameters" />
+      <module name="ecocoleta" options="" />
       <module name="ecocoleta (1) (com.github.jvtopsilva090.ecocoleta)" options="-parameters" />
       <module name="ecocoleta-api" options="-parameters" />
       <module name="ecocoleta-cli" options="-parameters" />

@@ -1,13 +1,25 @@
 package com.github.jvtopsilva090.ecocoletacli.dto;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public record CollectionPointOutDto (
     Integer id,
     String name,
     String formattedAddress,
     BigDecimal latitude,
-    BigDecimal longitude,
-    List<ResidueOutDto> residuesType
-) {}
+    BigDecimal longitude
+) {
+    @Override
+    public String toString() {
+        return String.format(
+            """
+            COLLECTION_POINT: %s
+            COLLECTION_POINT ID: %d
+            FORMATTED_ADDRESS: %s
+            LATITUDE: %f
+            LONGITUDE: %f
+            """
+            , name, id, formattedAddress, latitude, longitude
+        );
+    }
+}

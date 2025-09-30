@@ -1,11 +1,9 @@
 package com.github.jvtopsilva090.ecocoleta.ecocoletaapi.controller;
 
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.dto.*;
+import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.entity.CollectionPoint;
 import com.github.jvtopsilva090.ecocoleta.ecocoletaapi.service.CollectionPointService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,12 +23,9 @@ public class CollectionPointController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponseDto<List<CollectionPointOutDto>>> getAllCollectionPoints(
-        CollectionPointFiltersDto filtersDto,
-        @PageableDefault Pageable pageable
-    ) {
-        final Page<CollectionPointOutDto> page = collectionPointService.getAllCollectionPoints(filtersDto, pageable);
-        return ResponseEntity.ok(new ApiResponseDto<>(page, page.getContent()));
+    public ResponseEntity<ApiResponseDto<List<CollectionPoint>>> getAllCollectionPoints() {
+        final List<CollectionPoint> list = collectionPointService.getAllCollectionPoints();
+        return ResponseEntity.ok(new ApiResponseDto<>(list));
     }
 
     @GetMapping("/{id}")
@@ -40,7 +35,7 @@ public class CollectionPointController {
     }
 
     @PutMapping
-    public ResponseEntity<ApiResponseDto<List<CollectionPointOutDto>>> updateCollectionPoint(@RequestBody List<CollectionPointEditDto> collectionPointEditDtos) {
+    public ResponseEntity<ApiResponseDto<List<CollectionPointOutDto>>> updateCollectionPoint(@RequestBody CollectionPointEditDto collectionPointEditDtos) {
         final List<CollectionPointOutDto> collectionPoints = this.collectionPointService.updateCollectionPoint(collectionPointEditDtos);
         return ResponseEntity.ok(new ApiResponseDto<>(true, "Collection Points updated successfully!", collectionPoints));
     }
