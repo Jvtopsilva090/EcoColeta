@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="552e9d0b-36c1-4b36-a30e-c37660a4a15b" name="Changes" comment="refactor">
+      <change afterPath="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/dto/ResidueOutDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/controller/CollectionPointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/controller/CollectionPointController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointCreateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointCreateDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointEditDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/entity/ResiduesCollectionPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/entity/ResiduesCollectionPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/repository/CollectionPointRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/repository/CollectionPointRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/repository/ResiduesCollectionPointRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/repository/ResiduesCollectionPointRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/service/CollectionPointService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/service/CollectionPointService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/service/ResidueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/service/ResidueService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/dto/CollectionPointCreateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/dto/CollectionPointCreateDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/dto/CollectionPointEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/dto/CollectionPointEditDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/dto/CollectionPointOutDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/dto/CollectionPointOutDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/repository/EcoColetaApiRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/repository/EcoColetaApiRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/runner/EcocoletaCommandLineApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/runner/EcocoletaCommandLineApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,49 +51,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.EcocoletaApiApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ecocoleta [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ecocoleta-api [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ecocoleta-api [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ecocoleta-cli [install].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.EcoColetaApplication (1).executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.EcoColetaApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.EcocoletaApiApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.EcocoletaCliApplication.executor&quot;: &quot;Run&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;refactor-residues&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ariel-jorge/Projects/EcoColeta&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.EcocoletaApiApplication.executor": "Run",
+    "Maven.ecocoleta [clean].executor": "Run",
+    "Maven.ecocoleta-api [clean].executor": "Run",
+    "Maven.ecocoleta-api [install].executor": "Run",
+    "Maven.ecocoleta-cli [install].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.EcoColetaApplication (1).executor": "Run",
+    "Spring Boot.EcoColetaApplication.executor": "Run",
+    "Spring Boot.EcocoletaApiApplication.executor": "Run",
+    "Spring Boot.EcocoletaCliApplication.executor": "Run",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "refactor-residues",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/ariel-jorge/Projects/EcoColeta/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/dto",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli/dto" />
       <recent name="$PROJECT_DIR$/ecocoleta-client/src/main/java/com/github/jvtopsilva090/ecocoleta/dto" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ecocoleta-cli/src/main/java/com/github/jvtopsilva090/ecocoletacli" />
       <recent name="$PROJECT_DIR$/ecocoleta-api" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.github.jvtopsilva090.ecocoletacli.dto" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -111,14 +115,15 @@
         <entry key="SpringBootApplicationConfigurationType">
           <value>
             <map>
-              <entry key="EcocoletaApiApplication" value="STOPPED" />
+              <entry key="EcocoletaApiApplication" value="FAILED" />
+              <entry key="EcocoletaCliApplication" value="STOPPED" />
             </map>
           </value>
         </entry>
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.EcocoletaApiApplication">
+  <component name="RunManager" selected="Spring Boot.EcocoletaCliApplication">
     <configuration name="EcocoletaApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="ecocoleta-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.github.jvtopsilva090.ecocoleta.ecocoletaapi.EcocoletaApiApplication" />
@@ -156,7 +161,7 @@
       <workItem from="1759248821932" duration="125000" />
       <workItem from="1759248954480" duration="3076000" />
       <workItem from="1759319580375" duration="57000" />
-      <workItem from="1759396602558" duration="3509000" />
+      <workItem from="1759396602558" duration="8149000" />
     </task>
     <task id="LOCAL-00001" summary="refactor: major update, starting to separate the server from the client project.">
       <option name="closed" value="true" />
@@ -214,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757760707875</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="refactor">
+      <option name="closed" value="true" />
+      <created>1759400776506</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1759400776506</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -36,6 +36,22 @@ public class EcoColetaApiRepository {
             ).data();
     }
 
+    public List<CollectionPointOutDto> getCollectionPointByName(String collectionPointName) {
+        return this.restClientHelper
+            .get(
+                BASE_URL.concat("/collection-point?name=").concat(collectionPointName),
+                new ParameterizedTypeReference<ApiResponseDto<List<CollectionPointOutDto>>>() {}
+            ).data();
+    }
+
+    public List<CollectionPointOutDto> getCollectionPointByResidueType(String residueTypeName) {
+        return this.restClientHelper
+            .get(
+                BASE_URL.concat("/collection-point?residue=").concat(residueTypeName),
+                new ParameterizedTypeReference<ApiResponseDto<List<CollectionPointOutDto>>>() {}
+            ).data();
+    }
+
     public CollectionPointOutDto updateCollectionPoint(final CollectionPointEditDto collectionPointEditDto) {
         return this.restClientHelper
                 .put(
@@ -47,5 +63,12 @@ public class EcoColetaApiRepository {
 
     public void deleteCollectionPoint(Integer collectionPointId) {
         this.restClientHelper.delete(BASE_URL.concat("/collection-point/").concat(collectionPointId.toString()));
+    }
+
+    public List<ResidueOutDto> getAllResiduesType() {
+        return this.restClientHelper.get(
+            BASE_URL.concat("/residue"),
+            new ParameterizedTypeReference<>() {}
+        );
     }
 }

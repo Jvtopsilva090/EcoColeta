@@ -1,13 +1,16 @@
 package com.github.jvtopsilva090.ecocoletacli.dto;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 public record CollectionPointOutDto (
-    Integer id,
-    String name,
-    String formattedAddress,
-    BigDecimal latitude,
-    BigDecimal longitude
+        Integer id,
+        String name,
+        String formattedAddress,
+        BigDecimal latitude,
+        BigDecimal longitude,
+        List<ResidueOutDto> residuesType
 ) {
     @Override
     public String toString() {
@@ -18,8 +21,10 @@ public record CollectionPointOutDto (
             FORMATTED_ADDRESS: %s
             LATITUDE: %f
             LONGITUDE: %f
+            TIPOS_DE_RESIDUOS: %s
             """
             , name, id, formattedAddress, latitude, longitude
+            , ("\n").concat(Arrays.toString(residuesType.stream().map(residue -> ("\t").concat(residue.toString()).concat("\n")).toArray(String[]::new)))
         );
     }
 }

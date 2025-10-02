@@ -60,13 +60,20 @@ public class CollectionPointService {
 
     public CollectionPointOutDto getCollectionPointById(final Integer collectionPointId) {
         try {
+            final CollectionPointOutDto outDto;
+
             final CollectionPoint collectionPoint = this
                     .collectionPointRepository
                     .findById(collectionPointId)
                     .orElse(null);
 
             if (collectionPoint == null) return null;
-            return new CollectionPointOutDto(collectionPoint);
+
+            outDto = new CollectionPointOutDto(collectionPoint);
+            List<Residue> residues = residuesCollectionPointRepository.getResidueByIdCollectionPoint(collectionPoint.getId());
+            outDto.setResiduesType(residues);
+
+            return outDto;
         } catch (CollectionPointNotFoundException e) {
             throw e;
         } catch (Exception e) {
