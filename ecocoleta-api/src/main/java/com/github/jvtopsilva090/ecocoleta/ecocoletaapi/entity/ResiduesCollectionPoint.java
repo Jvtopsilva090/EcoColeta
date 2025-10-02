@@ -21,4 +21,9 @@ public class ResiduesCollectionPoint {
 
     @Column(name = "id_residue")
     private Integer idResidue;
+
+    public ResiduesCollectionPoint(Integer collectionPointId, Integer residueId) {
+        this.idCollectionPoint = collectionPointId;
+        this.idResidue = residueId;
+    }
 }

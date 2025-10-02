@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ResidueService {
 
-    private ResidueRepository residueRepository;
+    private final ResidueRepository residueRepository;
 
     public List<Residue> getAllResidueTypes() {
         return residueRepository.findAll();

@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="552e9d0b-36c1-4b36-a30e-c37660a4a15b" name="Changes" comment="refactor">
-      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/controller/ResidueController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/entity/Residue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/entity/ResiduesCollectionPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/projection/CollectionPointFlatProjection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/repository/ResidueRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/repository/ResiduesCollectionPointRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/service/ResidueService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/controller/CollectionPointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/controller/CollectionPointController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointOutDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointOutDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointCreateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointCreateDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointEditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/dto/CollectionPointEditDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/entity/ResiduesCollectionPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/entity/ResiduesCollectionPoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/repository/CollectionPointRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/repository/CollectionPointRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/repository/ResiduesCollectionPointRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/repository/ResiduesCollectionPointRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/service/CollectionPointService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/service/CollectionPointService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/resources/db/migration/V1__create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/resources/db/migration/V1__create_tables.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/resources/db/migration/V2__insert_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/resources/db/migration/V2__insert_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/service/ResidueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ecocoleta-api/src/main/java/com/github/jvtopsilva090/ecocoleta/ecocoletaapi/service/ResidueService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +72,7 @@
     &quot;Spring Boot.EcocoletaApiApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.EcocoletaCliApplication.executor&quot;: &quot;Run&quot;,
     &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;refactor-residues&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/ariel-jorge/Projects/EcoColeta&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -116,7 +111,7 @@
         <entry key="SpringBootApplicationConfigurationType">
           <value>
             <map>
-              <entry key="EcocoletaApiApplication" value="FAILED" />
+              <entry key="EcocoletaApiApplication" value="STOPPED" />
             </map>
           </value>
         </entry>
@@ -160,6 +155,8 @@
       <workItem from="1758676147815" duration="6939000" />
       <workItem from="1759248821932" duration="125000" />
       <workItem from="1759248954480" duration="3076000" />
+      <workItem from="1759319580375" duration="57000" />
+      <workItem from="1759396602558" duration="3509000" />
     </task>
     <task id="LOCAL-00001" summary="refactor: major update, starting to separate the server from the client project.">
       <option name="closed" value="true" />

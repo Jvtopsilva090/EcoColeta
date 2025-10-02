@@ -22,8 +22,11 @@ public class CollectionPointController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponseDto<List<CollectionPointOutDto>>> getAllCollectionPoints(@RequestParam(name = "residue", required = false) String residueType) {
-        final List<CollectionPointOutDto> list = collectionPointService.getAllCollectionPoints(residueType);
+    public ResponseEntity<ApiResponseDto<List<CollectionPointOutDto>>> getAllCollectionPoints(
+            @RequestParam(name = "residue", required = false) String residueType,
+            @RequestParam(name = "name", required = false) String name
+    ) {
+        final List<CollectionPointOutDto> list = collectionPointService.getAllCollectionPoints(residueType, name);
         return ResponseEntity.ok(new ApiResponseDto<>(list));
     }
 
@@ -34,8 +37,8 @@ public class CollectionPointController {
     }
 
     @PutMapping
-    public ResponseEntity<ApiResponseDto<List<CollectionPointOutDto>>> updateCollectionPoint(@RequestBody CollectionPointEditDto collectionPointEditDtos) {
-        final List<CollectionPointOutDto> collectionPoints = this.collectionPointService.updateCollectionPoint(collectionPointEditDtos);
+    public ResponseEntity<ApiResponseDto<CollectionPointOutDto>> updateCollectionPoint(@RequestBody CollectionPointEditDto collectionPointEditDtos) {
+        final CollectionPointOutDto collectionPoints = this.collectionPointService.updateCollectionPoint(collectionPointEditDtos);
         return ResponseEntity.ok(new ApiResponseDto<>(true, "Collection Points updated successfully!", collectionPoints));
     }
 

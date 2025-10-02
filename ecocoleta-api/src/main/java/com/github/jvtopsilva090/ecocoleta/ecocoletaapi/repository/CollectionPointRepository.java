@@ -17,8 +17,8 @@ public interface CollectionPointRepository extends JpaRepository<CollectionPoint
             cp.id as idCollectionPoint,
             cp.name as nameCollectionPoint,
             cp.formattedAddress as addressCollectionPoint,
-            cp.latitude,
-            cp.longitude,
+            cp.latitude as latitude,
+            cp.longitude as longitude,
             r.id as idResidue,
             r.name as nameResidue
         from CollectionPoint cp
@@ -26,7 +26,9 @@ public interface CollectionPointRepository extends JpaRepository<CollectionPoint
         left join Residue r on r.id = rcp.idResidue
         where 1=1
             and (:residue_type is null or lower(r.name) like lower(concat('%', :residue_type, '%')))
+            and (:name is null or lower(cp.name) like lower(concat('%', :name, '%')))
     """) List<CollectionPointFlatProjection> findAll(
-            @Param("residue_type") String residueType
+            @Param("residue_type") String residueType,
+            @Param("name") String name
     );
 }
